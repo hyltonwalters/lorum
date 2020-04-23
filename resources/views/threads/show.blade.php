@@ -11,7 +11,7 @@
                     {{ $thread->title }}
                 </div>
                 <div class="card-body">
-                    <h4 class="body">{{ $thread->body }}</h4>
+                    {{ $thread->body }}
                 </div>
             </div>
         </div>
@@ -33,11 +33,14 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form action="{{ route('replies.store', $thread->id) }}" method="POST">
+            <form action="{{ route('replies.store', [$thread->channel->slug, $thread->id]) }}" method="POST">
                 @csrf
                 <div class="form-group my-4">
                     <textarea type="text" name="body" id="body" rows="6" placeholder="Have something to say?"
-                        class="form-control"></textarea>
+                        class="form-control  @error('body') is-invalid @enderror"></textarea>
+                    @error('body')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <button class="btn btn-outline-dark" type="submit">Submit</button>
             </form>

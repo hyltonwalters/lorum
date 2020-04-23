@@ -10,7 +10,7 @@ Route::get('/', function () {
 });
 
 Route::get('/home', 'HomeController@index');
-Route::get('/threads', 'ThreadsController@index')->name('threads.index');
-Route::post('/threads', 'ThreadsController@store')->name('threads.store');
-Route::get('/threads/{thread}', 'ThreadsController@show')->name('threads.show');
-Route::post('/threads/{thread}/replies', 'RepliesController@store')->name('replies.store');
+Route::resource('threads', 'ThreadsController')->except('show');
+Route::get('threads/{channel}/{thread}', 'ThreadsController@show')->name('threads.show');
+Route::get('threads/{channel}', 'ChannelsController@index')->name('channels.index');
+Route::post('threads/{channel}/{thread}/replies', 'RepliesController@store')->name('replies.store');

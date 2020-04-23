@@ -4,17 +4,15 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            @foreach ($threads as $thread)
+            @foreach ($channel->threads as $thread)
             <div class="card my-4">
                 <div class="card-header">
-                    <a href="{{ route('threads.show', [$thread->channel->slug, $thread->id] ) }}">
+                    <a href="{{ route('threads.show', [$channel->slug, $thread->channel_id]) }}">
                         <h4>{{ $thread->title }}</h4>
                     </a>
                 </div>
                 <div class="card-body">
-                    <article>
-                        {{ $thread->body }}
-                    </article>
+                    {{ $thread->body }}
                 </div>
             </div>
             @endforeach

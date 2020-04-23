@@ -7,6 +7,6 @@
         {{ $reply->created_at->diffForHumans() }}...
     </div>
     <div class="card-body">
-        <h4 class="body">{{ $reply->body }}</h4>
+        {{ $reply->body }}
     </div>
 </div>
